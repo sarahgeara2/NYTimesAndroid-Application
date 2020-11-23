@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rlNewsWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="15dp">
+        
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/ivNews"
+            />
+
+        <TextView
+            android:id="@+id/tvNews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivNews"
+            android:layout_toLeftOf="@+id/ivCheck"
+            android:layout_marginRight="10dp"
+            android:text="Test"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginLeft="15dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/tvAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivNews"
+            android:layout_toLeftOf="@+id/ivCheck"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tvNews"
+            android:text="by Test"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginLeft="15dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tvAuthor"
+            android:layout_alignParentRight="true"
+            android:text="2018-06-03"
+            android:maxLines="1"
+            android:layout_marginRight="30dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            />
+        
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/ivCheck"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_arrow_right"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
