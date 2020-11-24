@@ -31,8 +31,8 @@ class NewsDetailsFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_news_details, container, false)
-
-        var news = activity!!.intent.getSerializableExtra(GlobalVars.NEWS_BEAN) as NewsResponse
+        mActivity = requireActivity()
+        var news = mActivity.intent.getSerializableExtra(GlobalVars.NEWS_BEAN) as NewsResponse
 
         news.let {
             news.title?.let {

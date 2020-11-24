@@ -25,14 +25,14 @@ class MostPopularNewsFragment : BaseFragment() {
     @ViewModelInjection
     lateinit var viewModel: ViewModelInjectionField<MostPopularNewsViewModel>
     lateinit var root: View
-
+    var newsAdapter : NewsAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.fragment_most_popular_news, container, false)
-        mActivity = activity!!
+        mActivity = requireActivity()
         getNews()
         root.srlNews.setOnRefreshListener {
             getNews()
@@ -58,8 +58,13 @@ class MostPopularNewsFragment : BaseFragment() {
                         Status.SUCCESS -> {
                             showHideLoading(false)
                             var news = repos.data!!.results as ArrayList<NewsResponse?>
-                            var landingPagerAdapter  = NewsAdapter(mActivity,news)
-                            root.rvNews.adapter = landingPagerAdapter
+                            if(newsAdapter!=null){
+                                newsAdapter!!.menuItems = news
+                                newsAdapter!!.notifyDataSetChanged()
+                            }else {
+                                newsAdapter = NewsAdapter(news)
+                            }
+                            root.rvNews.adapter = newsAdapter
                         }
                     }
                 }

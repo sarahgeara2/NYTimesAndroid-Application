@@ -12,8 +12,7 @@ import com.example.nytimesapplication.common.models.NewsResponse
 import java.util.*
 
 class NewsAdapter(
-        private var activity: Activity,
-        private var menuItems: ArrayList<NewsResponse?>) :
+        var menuItems: ArrayList<NewsResponse?>) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
@@ -53,7 +52,7 @@ class NewsAdapter(
             holder.rlNewsWrapper.setTag(position)
             holder.rlNewsWrapper.setOnClickListener {
                 var posi = it.getTag() as Int
-                GlobalFunctions.goToNewsDetailsActivity(activity,menuItems[posi]!!)
+                GlobalFunctions.goToNewsDetailsActivity(holder.rlNewsWrapper.context,menuItems[posi]!!)
             }
         }
     }

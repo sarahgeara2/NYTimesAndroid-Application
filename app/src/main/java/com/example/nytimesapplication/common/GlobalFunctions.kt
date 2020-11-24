@@ -2,6 +2,7 @@ package com.example.nytimesapplication.common
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.widget.Toast
@@ -38,10 +39,10 @@ class GlobalFunctions {
                 e.printStackTrace()
             }
         }
-        fun goToNewsDetailsActivity(activity: Activity,newsBean:NewsResponse) {
-            val intent = Intent(activity, NewsDetailsActivity::class.java)
+        fun goToNewsDetailsActivity(context: Context,newsBean:NewsResponse) {
+            val intent = Intent(context, NewsDetailsActivity::class.java)
             intent.putExtra(GlobalVars.NEWS_BEAN,newsBean)
-            activity.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 }
