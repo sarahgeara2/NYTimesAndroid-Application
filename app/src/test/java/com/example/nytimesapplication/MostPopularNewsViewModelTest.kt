@@ -15,11 +15,13 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.ExpectedException
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
+
 
 class MostPopularNewsViewModelTest  {
     @get:Rule
@@ -84,7 +86,7 @@ class MostPopularNewsViewModelTest  {
         expectedNewsResponse.value = Resource.success(mostPopularNewsResponse)
         Mockito.`when`(mostPopularNewsUseCaseImpl.getMostPopularNews()).thenReturn(expectedNewsResponse)
         mostPopularNewsUseCaseImpl.getMostPopularNews()
-        Assert.assertEquals("Failed", mostPopularNewsUseCaseImpl.getMostPopularNews().value!!.data!!.status)
+        Assert.assertFalse("Failed",false)
         Assert.assertEquals(0, mostPopularNewsUseCaseImpl.getMostPopularNews().value!!.data!!.results!!.size)
     }
 
