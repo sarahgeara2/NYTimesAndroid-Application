@@ -27,7 +27,11 @@ Clone the project from Git repo and apply the two steps below:
 
 # Run the ui test
 
-- Right click the AppInstrumentedTest.java and click Run 'AppInstrumentedTest'
+- Right click the class AppInstrumentedTest and click Run 'AppInstrumentedTest'
+
+# Run the unit test
+
+- Right click the class MostPopularNewsViewModelTest and click Run 'MostPopularNewsViewModelTest'
 
 # Generate a coverage report
 
