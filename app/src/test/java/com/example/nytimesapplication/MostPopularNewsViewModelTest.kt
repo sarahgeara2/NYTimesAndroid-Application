@@ -28,7 +28,7 @@ class MostPopularNewsViewModelTest  {
     @Mock
     lateinit var mostPopularNewsUseCaseImpl : MostPopularNewsUseCaseImpl
 
-    private lateinit var testSingle: MutableLiveData<Resource<MostPopularNewsResponse?>>
+    private lateinit var expectedNewsResponse: MutableLiveData<Resource<MostPopularNewsResponse?>>
 
     @Before
     fun setup() {
@@ -57,7 +57,7 @@ class MostPopularNewsViewModelTest  {
 
     @Test
     fun getMostPopularNewsSuccess() {
-        testSingle = MutableLiveData<Resource<MostPopularNewsResponse?>>()
+        expectedNewsResponse = MutableLiveData<Resource<MostPopularNewsResponse?>>()
         var mostPopularNewsResponse = MostPopularNewsResponse()
         mostPopularNewsResponse.status="OK"
         var newsResponse = NewsResponse()
@@ -67,21 +67,25 @@ class MostPopularNewsViewModelTest  {
         newsResponse1.id="2"
         newsResponse1.title="title"
         mostPopularNewsResponse.results = arrayListOf(newsResponse,newsResponse1)
-        testSingle.value = Resource.success(mostPopularNewsResponse)
-        Mockito.`when`(mostPopularNewsUseCaseImpl.getMostPopularNews()).thenReturn(testSingle)
+        expectedNewsResponse.value = Resource.success(mostPopularNewsResponse)
+        Mockito.`when`(mostPopularNewsUseCaseImpl.getMostPopularNews()).thenReturn(expectedNewsResponse)
         mostPopularNewsUseCaseImpl.getMostPopularNews()
+        Assert.assertEquals("OK", mostPopularNewsUseCaseImpl.getMostPopularNews().value!!.data!!.status)
         Assert.assertEquals(2, mostPopularNewsUseCaseImpl.getMostPopularNews().value!!.data!!.results!!.size)
     }
 
 
     @Test
     fun getMostPopularNewsFailure() {
-        testSingle = MutableLiveData<Resource<MostPopularNewsResponse?>>()
+        expectedNewsResponse = MutableLiveData<Resource<MostPopularNewsResponse?>>()
         var mostPopularNewsResponse = MostPopularNewsResponse()
-        testSingle.value = Resource.success(mostPopularNewsResponse)
-        Mockito.`when`(mostPopularNewsUseCaseImpl.getMostPopularNews()).thenReturn(testSingle)
+        mostPopularNewsResponse.status="Failed"
+        mostPopularNewsResponse.results = arrayListOf()
+        expectedNewsResponse.value = Resource.success(mostPopularNewsResponse)
+        Mockito.`when`(mostPopularNewsUseCaseImpl.getMostPopularNews()).thenReturn(expectedNewsResponse)
         mostPopularNewsUseCaseImpl.getMostPopularNews()
-        Assert.assertEquals(null, mostPopularNewsUseCaseImpl.getMostPopularNews().value)
+        Assert.assertEquals("Failed", mostPopularNewsUseCaseImpl.getMostPopularNews().value!!.data!!.status)
+        Assert.assertEquals(0, mostPopularNewsUseCaseImpl.getMostPopularNews().value!!.data!!.results!!.size)
     }
 
 
